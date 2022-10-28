@@ -1,3 +1,3 @@
 # cp_snippet
 
-Abandoned cp snippet
+Current CP template
