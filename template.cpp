@@ -473,6 +473,36 @@ class dsu
     }
 };
 
+vll primes;
+           
+bool _prime[200005]; 
+void SieveOfEratosthenes(int n) 
+{ 
+    // Create a boolean array "prime[0..n]" and initialize 
+    // all entries it as true. A value in prime[i] will 
+    // finally be false if i is Not a prime, else true. 
+    memset(_prime, true, sizeof(_prime)); 
+  
+    for (int p=2; p*p<=n; p++) 
+    { 
+        // If prime[p] is not changed, then it is a prime 
+        if (_prime[p] == true) 
+        { 
+            // Update all multiples of p greater than or  
+            // equal to the square of it 
+            // numbers which are multiple of p and are 
+            // less than p^2 are already been marked.  
+            for (int i=p*p; i<=n; i += p) 
+                _prime[i] = false; 
+        } 
+    } 
+  
+    // Print all prime numbers 
+    for (int p=2; p<=n; p++) 
+       if (_prime[p]) 
+          primes.pb(p);
+}
+
 ll gcd(ll a, ll b) {if (b > a) {return gcd(b, a);} if (b == 0) {return a;} return gcd(b, a % b);}
 ll expo(ll a, ll b, ll mod) {ll res = 1; while (b > 0) {if (b & 1)res = (res * a) % mod; a = (a * a) % mod; b = b >> 1;} return res;}
 void extendgcd(ll a, ll b, ll*v) {if (b == 0) {v[0] = 1; v[1] = 0; v[2] = a; return ;} extendgcd(b, a % b, v); ll x = v[1]; v[1] = v[0] - v[1] * (a / b); v[0] = x; return;} //pass an arry of size1 3
@@ -505,6 +535,8 @@ int32_t main() {
     auto start1 = high_resolution_clock::now();
     ll t=1LL;
     cin>>t;
+    
+    // sieveoferathosthenes(sz) -> generates a list of primes of sz size
 
     while(t--)
     {
