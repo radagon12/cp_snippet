@@ -1,3 +1,5 @@
+class SegmentTree
+{
 vector<ll> tree;
 
 void segmentTree(ll index,ll l,ll r,vector<ll>& a)
@@ -63,4 +65,5 @@ ll query(ll index,ll l,ll r,ll ql,ll qr)
 	ll mid = (l + r)/2;
 
 	return min(query(2*index + 1,l ,mid,ql,qr), query(2*index + 2,mid + 1,r,ql,qr));
+}
 }
